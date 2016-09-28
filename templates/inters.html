@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>接口列表</title>
+<script type="text/javascript">
+	//alert("{{inters.services}}")
+</script>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<table class="tb-servers">
+		<caption>服务器列表</caption>
+		{% for server in inters.servers %}
+		<tr><td>{{server}}</td></tr>
+		{% endfor %}
+	</table>
+	<table class="tb-inters">
+		<caption>接口列表</caption>
+		<tr>
+			<th>服务</th>
+			<th>地址</th>
+			<th>请求方式</th>
+			<th>参数格式</th>
+			<th>请求参数</th>
+			<th>预期响应格式</th>
+		</tr>
+		{% for service in inters.services %}
+			{% for name,interfaces in service.items %}
+				{% for inter in interfaces %}
+					<tr>
+						<th>{{name}}</th>
+						<th>{{inter.url}}</th>
+						<th>{{inter.method}}</th>
+						<th>{{inter.enc}}</th>
+						<th>{{inter.input}}</th>
+						<th>{{inter.output}}</th>
+					</tr>
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+	</table>
+</body>
+</html>

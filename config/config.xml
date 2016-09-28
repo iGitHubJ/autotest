@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<servers>
+		<server>121.40.106.98:9090</server>
+	</servers>
+	<services>
+		<service name="MeterService">
+			<interfaces>
+				<!-- 地磁批量上传-->
+				<interface>
+					<url>/gen.do</url>
+					<method>POST</method>
+					<enc>json</enc>
+					<input>
+{"ver":"1.0","dev":"M800002","data":[{"parkingno":"888051","eventtime":"20160408154726","state":0}],"id":"1","cmd":"batchststate"}
+					</input>
+					<output>
+					{"cmd":"batchsetstate","data":{},"errno":"200","errtext":"执行正常","id":2,"token":""}
+					</output>
+				</interface>
+			</interfaces>
+		</service>
+		<service name="stp_handset">
+			<interfaces>
+				<!-- 进场-->
+				<interface>
+					<url>/rfcaphone/carin.do</url>
+					<method>POST</method>
+					<enc>urlencode</enc>
+					<input>
+					username=maj&amp;spaces=600101&amp;intime=2016-09-022 17:16:00
+					</input>
+					<output>
+					{"id":"27279","now":"20160922182249"}
+					</output>
+				</interface>
+			</interfaces>
+		</service>
+	</services>
+</root>

@@ -1,0 +1,83 @@
+@CHARSET "UTF-8";
+*{
+	padding:0;
+	margin:0;
+}
+.body{
+	width:1500px;
+	margin:0 auto;
+}
+.top-div{
+	height:75px;
+	width:1500px;
+	margin:0 auto;
+	border-bottom:1px solid #abc;
+}
+.top-frame{
+	width:1500px;
+	height:75px;
+	scrolling:0;
+	border:0;
+}
+
+.left-div{
+	width:150px;
+	height:650px;
+	display:inline-block;
+	border-right:1px solid #abc;
+}
+.left-frame{
+	width:150px;
+	height:650px;
+	scrolling:no;
+	border:0 none;
+	
+}
+.right-div{
+	width:1340px;
+	height:650px;
+	display:inline-block;
+	
+}
+.right-frame{
+	width:1340px;
+	height:650px;
+	scrolling:no;
+	border:0 none;
+}
+.tb-inters{
+	/* table-layout: fixed; */
+	width:1200px;
+	border:1px solid #111;
+	border-collapse: collapse;
+}
+.tb-servers{
+	border:1px solid #111;
+	border-collapse: collapse;
+}
+.tb-servers td{
+	border:1px solid #333;
+}
+.tb-inters th,td{
+	border:1px solid #333;
+}
+.tb-inters td{
+	text-align:left;
+	vertical-align: middle;
+	word-break: break-all; 
+	word-wrap:break-word;
+	font-family:宋体;
+}
+
+.left-menu h3{
+	margin-top:50px;
+	text-align:center;
+}
+.left-menu h3 a{
+	font-family:微软雅黑;
+	text-decoration: none;
+}
+.left-menu h3:hover{
+	font-size:20px;
+	background-color: #A0CFE2;
+}

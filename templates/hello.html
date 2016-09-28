@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block mainbody %}
+	<p>extends base.html file</p>
+	{{names}}
+	<h2>test if</h2>
+	{% if bool %}
+		True
+	{% else %}
+		False
+	{% endif %}
+	<h2>test for in</h2>
+	{% for name in names %}
+		{{name}} <br>
+	{% endfor %}
+	<h3>filter</h3>
+	{% for name in names %}
+		{{name|first|upper}} <br>
+	{% endfor %}
+{% endblock %}

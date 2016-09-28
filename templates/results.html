@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试结果</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<table class="tb-inters">
+		<caption>接口测试结果</caption>
+		<tr>
+			<th>请求地址</th>
+			<th>请求方式</th>
+			<th>参数格式</th>
+			<th>请求参数</th>
+			<th>响应</th>
+			<th>调用时间</th>
+			<th>结果</th>
+			<th>耗时(秒)</th>
+			<th>预期响应格式</th>
+		</tr>
+		{% for inter in data %}
+			<tr>
+				<th>{{inter.addr}}</th>
+				<th>{{inter.method}}</th>
+				<th>{{inter.enc}}</th>
+				<th>{{inter.inputs}}</th>
+				<th>{{inter.response}}</th>
+				<th>{{inter.createtime}}</th>
+				<th>{{inter.result}}</th>
+				<th>{{inter.spend}}</th>
+				<th>{{inter.output}}</th>
+			</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
