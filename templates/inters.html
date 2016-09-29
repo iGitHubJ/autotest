@@ -3,44 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <title>接口列表</title>
-<script type="text/javascript">
-	//alert("{{inters.services}}")
-</script>
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/static/json2.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#execute").click(function(){
+		if($("input[name=serverid]:checked").length==0){
+			alert("请至少选择一个服务器！");
+		}else if($("input[name=interid]:checked").length==0){
+			alert("请至少选择一个接口！");
+		}else{
+			var serverids=[];
+			var interids=[];
+			$("input[name=serverid]:checked").each(function(i,server){
+				serverids.push($(this).val())
+			});
+			$("input[name=interid]:checked").each(function(i,inter){
+				interids.push($(inter).val())
+			});
+			$.ajax({
+				cache : false,
+				async : true,
+				type:"POST",
+				url : "/execute.do",
+				dataType:"json",
+				data:$.param({"serverid":JSON.stringify(serverids),"interid":JSON.stringify(interids)}),
+				beforeSend:function() {
+					$("#execute").attr("src","/static/images/running.png");
+				},
+				error:function() {
+					$("#execute").attr("src","/static/images/run.png");
+					alert('执行出错');
+				},
+				success : function(data, textStatus) {
+					$("#execute").attr("src","/static/images/run.png");
+					alert('执行成功，请查看测试结果');
+				}
+			});
+		}
+	});
+	
+	$("#selectserver").click(function(){
+		if(this.checked){
+			$("input[name=serverid]").each(function(){
+				this.checked=true;
+				$("#selectserver").attr("title","全不选")
+			});
+		}else{
+			$("input[name=serverid]").each(function(){
+				this.checked=false;
+				$("#selectserver").attr("title","全选")
+			});
+		}
+	});
+	
+	$("#selectinter").click(function(){
+		if(this.checked){
+			$("input[name=interid]").each(function(){
+				this.checked=true;
+				$("#selectinter").attr("title","全不选")
+			});
+		}else{
+			$("input[name=interid]").each(function(){
+				this.checked=false;
+				$("#selectinter").attr("title","全选")
+			});
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<div class="tb-div">
-		<table class="tb-servers">
-			<caption>服务器列表</caption>
-			{% for server in inters.servers %}
-			<tr><td>{{server}}</td></tr>
-			{% endfor %}
-		</table>
-		<table class="tb-inters">
-			<caption>接口列表</caption>
-			<tr>
-				<th>服务</th>
-				<th>地址</th>
-				<th>请求方式</th>
-				<th>参数格式</th>
-				<th>请求参数</th>
-				<th>预期响应格式</th>
-			</tr>
-			{% for service in inters.services %}
-				{% for name,interfaces in service.items %}
-					{% for inter in interfaces %}
+		<div class="execute-div">
+			<div class="div-img">
+				<img alt="运行" id="execute" src="/static/images/run.png" title="执行">
+			</div>
+		</div>
+		<fieldset>
+		    <legend>服务器列表</legend>
+		    	<div class="btn-div">
+		    		<img src="/static/images/add.png" onclick="" class="img-btn" title="新增">
+		    	</div>
+				<table class="tb-servers">
+					<tr>
+						<th><input type="checkbox" title="全选" id="selectserver" name="selectserver"></th>
+						<th>服务器</th>
+						<th>操作</th>
+					</tr>
+					{% for server in servers %}
+					<tr>
+						<td><input type="checkbox" value="{{server.id}}"  name="serverid"></td>
+						<td>{{server.name}}</td>
+						<td>
+							<img src="/static/images/pencil.png" onclick="" class="img-btn" title="编辑">
+							<img src="/static/images/remove.png" onclick="" class="img-btn" title="删除">
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+		</fieldset>
+		<fieldset>
+		    <legend>接口列表</legend>
+		    	<div class="btn-div">
+			    	<img src="/static/images/add.png" onclick="" class="img-btn" title="新增">
+				</div>
+				<table class="tb-inters">
+					<tr>
+						<th><input type="checkbox" title="全选" id="selectinter" name="selectinter"></th>
+						<th>服务</th>
+						<th>路径</th>
+						<th>请求方式</th>
+						<th>参数格式</th>
+						<th>请求参数格式</th>
+						<th>预期响应格式</th>
+						<th>操作</th>
+					</tr>
+					{% for inter in inters %}
 						<tr>
-							<td>{{name}}</td>
-							<td>{{inter.url}}</td>
+							<td><input type="checkbox" value="{{inter.id}}"  name="interid"></td>
+							<td>{{inter.service}}</td>
+							<td>{{inter.path}}</td>
 							<td>{{inter.method}}</td>
 							<td>{{inter.enc}}</td>
 							<td>{{inter.input}}</td>
 							<td>{{inter.output}}</td>
+							<td>
+								<img src="/static/images/pencil.png" onclick="" class="img-btn" title="编辑">
+								<img src="/static/images/remove.png" onclick="" class="img-btn" title="删除">
+							</td>
 						</tr>
 					{% endfor %}
-				{% endfor %}
-			{% endfor %}
-		</table>
+				</table>
+		</fieldset>
 	</div>
 </body>
 </html>

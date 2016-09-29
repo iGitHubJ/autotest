@@ -6,34 +6,36 @@
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="tb-div">
-	<table class="tb-inters">
-		<caption>接口测试结果</caption>
-		<tr>
-			<th>请求地址</th>
-			<th>请求方式</th>
-			<th>参数格式</th>
-			<th>请求参数</th>
-			<th>响应</th>
-			<th>调用时间</th>
-			<th>结果</th>
-			<th>耗时(秒)</th>
-			<th>预期响应格式</th>
-		</tr>
-		{% for inter in data %}
-			<tr>
-				<td>{{inter.addr}}</td>
-				<td>{{inter.method}}</td>
-				<td>{{inter.enc}}</td>
-				<td>{{inter.inputs}}</td>
-				<td>{{inter.response}}</td>
-				<td>{{inter.createtime}}</td>
-				<td>{{inter.result}}</td>
-				<td>{{inter.spend}}</td>
-				<td>{{inter.output}}</td>
-			</tr>
-		{% endfor %}
-	</table>
-</div>
+	<div class="tb-div">
+		<fieldset>
+			<legend>接口测试结果</legend>
+			<div class="btn-div">
+				<input type="button" class="btn" value="批量删除" onclick="">
+				<input type="button" class="btn" value="全部清空" onclick="">
+			</div>
+			<table class="tb-inters">
+				<tr>
+					<th><input type="checkbox" value="全选" id="selectall" name="selectall"></th>
+					<th>请求地址</th>
+					<th>请求内容</th>
+					<th>响应</th>
+					<th>结果</th>
+					<th>响应时间(毫秒)</th>
+					<th>调用时间</th>
+				</tr>
+				{% for result in data %}
+					<tr>
+						<td><input type="checkbox" value="{{result.id}}"  name="item"></td>
+						<td>http:{{result.server.name}}/{{result.inter.service}}{{result.inter.path}}</td>
+						<td>{{result.req}}</td>
+						<td>{{result.resp}}</td>
+						<td>{{result.result}}</td>
+						<td>{{result.spend}}</td>
+						<td>{{result.createtime}}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</fieldset>
+	</div>
 </body>
 </html>

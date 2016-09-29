@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from urlinter import views
+from interapp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^lsinters/$', views.lsinters),
-    url(r'^execute/$', views.execute),
-    url(r'^lsresults/$', views.lsresults),
+    url(r'^lsinters.do$', views.lsinters),
+    url(r'^execute.do$', views.execute),
+    url(r'^executeAll.do$', views.executeAll),
+    url(r'^lsresults.do$', views.lsresults),
 ]

@@ -757,3 +757,171 @@ Traceback (most recent call last):
   File "F:\python-workspace\autotest\urlinter\views.py", line 59, in lsresults
     print("ctx:"+ctx)
 TypeError: cannot concatenate 'str' and 'dict' objects
+2016-09-29 13:47:51,230 [Thread-9:7488] [exception.handle_uncaught_exception:124] ERROR Internal Server Error: /lsresults/
+Traceback (most recent call last):
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\exception.py", line 39, in inner
+    response = get_response(request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\python-workspace\autotest\interapp\views.py", line 62, in lsresults
+    return render(request, 'results.html', ctx)
+  File "D:\python\Python27\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\backends\django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "D:\python\Python27\lib\site-packages\django\template\loaders\base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '+result.server.name+'/'+result.inter.service+result.inter.path' from ''http:'+result.server.name+'/'+result.inter.service+result.inter.path'
+2016-09-29 13:49:25,625 [Thread-2:6128] [exception.handle_uncaught_exception:124] ERROR Internal Server Error: /lsresults/
+Traceback (most recent call last):
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\exception.py", line 39, in inner
+    response = get_response(request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\python-workspace\autotest\interapp\views.py", line 62, in lsresults
+    return render(request, 'results.html', ctx)
+  File "D:\python\Python27\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\backends\django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "D:\python\Python27\lib\site-packages\django\template\loaders\base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '+result.server.name+'/'+result.inter.service+result.inter.path' from ''http:'+result.server.name+'/'+result.inter.service+result.inter.path'
+2016-09-29 14:04:28,003 [Thread-13:4200] [exception.handle_uncaught_exception:124] ERROR Internal Server Error: /lsresults/
+Traceback (most recent call last):
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\exception.py", line 39, in inner
+    response = get_response(request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\python-workspace\autotest\interapp\views.py", line 62, in lsresults
+    return render(request, 'results.html', ctx)
+  File "D:\python\Python27\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\backends\django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "D:\python\Python27\lib\site-packages\django\template\loaders\base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '+result.server.name+'/'+result.inter.service+result.inter.path' from ''http:'+result.server.name+'/'+result.inter.service+result.inter.path'
+2016-09-29 14:04:35,562 [Thread-15:6364] [base.get_response:152] WARNING Not Found: /execute
+2016-09-29 14:08:35,881 [Thread-6:7080] [base.get_response:152] WARNING Not Found: /lsinters
+2016-09-29 14:08:40,349 [Thread-17:6636] [base.get_response:152] WARNING Not Found: /lsinters
+2016-09-29 14:11:40,186 [Thread-12:6316] [exception.handle_uncaught_exception:124] ERROR Internal Server Error: /lsresults.do
+Traceback (most recent call last):
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\exception.py", line 39, in inner
+    response = get_response(request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\python-workspace\autotest\interapp\views.py", line 62, in lsresults
+    return render(request, 'results.html', ctx)
+  File "D:\python\Python27\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\backends\django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "D:\python\Python27\lib\site-packages\django\template\loaders\base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '+result.server.name+'/'+result.inter.service+result.inter.path' from ''http:'+result.server.name+'/'+result.inter.service+result.inter.path'
+2016-09-29 14:20:15,584 [Thread-14:7996] [base.get_response:152] WARNING Not Found: /lsresults/
+2016-09-29 14:20:20,529 [Thread-24:8104] [exception.handle_uncaught_exception:124] ERROR Internal Server Error: /lsresults.do
+Traceback (most recent call last):
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\exception.py", line 39, in inner
+    response = get_response(request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Python27\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "F:\python-workspace\autotest\interapp\views.py", line 62, in lsresults
+    return render(request, 'results.html', ctx)
+  File "D:\python\Python27\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Python27\lib\site-packages\django\template\loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\backends\django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\python\Python27\lib\site-packages\django\template\engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "D:\python\Python27\lib\site-packages\django\template\loaders\base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "D:\python\Python27\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '+result.server.name+'/'+result.inter.service+result.inter.path' from ''http:'+result.server.name+'/'+result.inter.service+result.inter.path'
+2016-09-29 20:39:53,650 [Thread-53:6812] [base.get_response:152] WARNING Not Found: /execute.do
+2016-09-29 20:40:25,391 [Thread-55:2452] [base.get_response:152] WARNING Not Found: /execute.do
+2016-09-29 20:41:39,674 [Thread-14:8948] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do
+2016-09-29 20:43:08,013 [Thread-28:6292] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do
+2016-09-29 20:44:55,762 [Thread-16:8228] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do
+2016-09-29 20:46:08,992 [Thread-32:8636] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do
+2016-09-29 20:48:22,806 [Thread-15:8768] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do
+2016-09-29 20:53:10,930 [Thread-15:9080] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do
+2016-09-29 20:53:42,969 [Thread-15:8944] [csrf._reject:158] WARNING Forbidden (CSRF token missing or incorrect.): /execute.do

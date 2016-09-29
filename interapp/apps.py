@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class UrlinterConfig(AppConfig):
-    name = 'urlinter'
+    name = 'interapp'

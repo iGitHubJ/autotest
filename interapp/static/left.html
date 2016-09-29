@@ -12,7 +12,7 @@
 				$.ajax({
 					cache : false,
 					async : true,
-					url : "/execute",
+					url : "/executeAll.do",
 					error : function() {
 						alert('执行出错');
 					},
@@ -27,9 +27,9 @@
 </head>
 <body style="background-color:rgb(210,235,241);">
 	<div class="left-menu">
-		<h3><a href="/lsinters" target="right">测试接口</a></h3>
+		<h3><a href="/lsinters.do" target="right">测试接口</a></h3>
 		<h3><a href="javascript:void(0)" id="execute">执行测试</a></h3>
-		<h3><a href="/lsresults"  target="right">测试结果</a></h3>
+		<h3><a href="/lsresults.do"  target="right">测试结果</a></h3>
 	</div>
 </body>
 </html>

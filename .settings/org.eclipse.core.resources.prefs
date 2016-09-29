@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//autotest/settings.py=utf-8
+encoding//interapp/business.py=utf8
+encoding//interapp/models.py=utf-8
+encoding//interapp/views.py=utf-8
+encoding//utils/compare_util.py=utf8
+encoding//utils/constant.py=utf8
+encoding//utils/logger.py=utf8
+encoding//utils/xml_util.py=utf8
