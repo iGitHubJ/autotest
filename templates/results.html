@@ -6,6 +6,7 @@
 <link href="/static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div class="tb-div">
 	<table class="tb-inters">
 		<caption>接口测试结果</caption>
 		<tr>
@@ -21,17 +22,18 @@
 		</tr>
 		{% for inter in data %}
 			<tr>
-				<th>{{inter.addr}}</th>
-				<th>{{inter.method}}</th>
-				<th>{{inter.enc}}</th>
-				<th>{{inter.inputs}}</th>
-				<th>{{inter.response}}</th>
-				<th>{{inter.createtime}}</th>
-				<th>{{inter.result}}</th>
-				<th>{{inter.spend}}</th>
-				<th>{{inter.output}}</th>
+				<td>{{inter.addr}}</td>
+				<td>{{inter.method}}</td>
+				<td>{{inter.enc}}</td>
+				<td>{{inter.inputs}}</td>
+				<td>{{inter.response}}</td>
+				<td>{{inter.createtime}}</td>
+				<td>{{inter.result}}</td>
+				<td>{{inter.spend}}</td>
+				<td>{{inter.output}}</td>
 			</tr>
 		{% endfor %}
 	</table>
+</div>
 </body>
 </html>

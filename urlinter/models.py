@@ -15,7 +15,7 @@ class Inter(models.Model):
     response = models.TextField()
     createtime = models.DateTimeField(default = datetime.datetime.now())
     result = models.BooleanField(default = False)
-    spend = models.FloatField()
+    spend = models.IntegerField()
     class Meta:
         db_table = 'inter'
         get_latest_by = 'createtime'

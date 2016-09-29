@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
 import sys, os, json
-import datetime, time
+import datetime, time,traceback
 from utils import constant
 from utils.xml_util import parse
 from utils import compare_util
@@ -46,7 +46,7 @@ def runAndSave():
                             fail += 1
                             res = False
                         end = time.time()
-                        inter = Inter(addr=addr, method=method, enc=enc, inputs=inputs, output=output, response=resp, result=res, spend=(end - begin))
+                        inter = Inter(addr=addr, method=method, enc=enc, inputs=inputs, output=output, response=resp, result=res, spend=(int)((end - begin)*1000))
                         inter.save()
                         log.debug(u"已将%s保存到数据库"% inter)
         log.debug(u"==============测试脚本执行结束==============")

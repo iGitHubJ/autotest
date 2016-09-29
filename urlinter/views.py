@@ -45,7 +45,7 @@ def execute(request):
         res["code"]=500
         res["msg"]=e.message
         log.error(u"程序遇到异常=>"+traceback.format_exc())
-    return HttpResponse(json.dumps(res))
+    return HttpResponse(json.dumps(res), content_type="application/json")
 
 
 def lsresults(request):
