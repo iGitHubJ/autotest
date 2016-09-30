@@ -18,11 +18,11 @@
 		<fieldset>
 		    <legend>服务器列表</legend>
 		    	<div class="btn-div">
-		    		<img src="/static/images/add.png" onclick="" class="img-btn" title="新增">
+		    		<img src="/static/images/add.png" onclick="addServer()" class="img-btn" title="新增">
 		    	</div>
-				<table class="tb-servers">
+				<table class="tb-servers" id="tb-servers">
 					<tr>
-						<th><input type="checkbox" title="全选" id="selectserver" name="selectserver"></th>
+						<th><input type="checkbox" title="全选" id="selectserver" name="selectserver" onclick="checkAll(this,'serverid')"></th>
 						<th>服务器</th>
 						<th>操作</th>
 					</tr>
@@ -31,8 +31,7 @@
 						<td><input type="checkbox" value="{{server.id}}"  name="serverid"></td>
 						<td>{{server.name}}</td>
 						<td>
-							<img src="/static/images/pencil.png" onclick="" class="img-btn" title="编辑">
-							<img src="/static/images/remove.png" onclick="" class="img-btn" title="删除">
+							<img src="/static/images/remove.png" class="img-btn" title="删除" onclick="del('server',{{server.id}})">
 						</td>
 					</tr>
 					{% endfor %}
@@ -41,11 +40,11 @@
 		<fieldset>
 		    <legend>接口列表</legend>
 		    	<div class="btn-div">
-			    	<img src="/static/images/add.png" onclick="" class="img-btn" title="新增">
+			    	<img src="/static/images/add.png" class="img-btn" title="新增" onclick="location.href='/templates/saveinter.html'">
 				</div>
 				<table class="tb-inters">
 					<tr>
-						<th><input type="checkbox" title="全选" id="selectinter" name="selectinter"></th>
+						<th><input type="checkbox" title="全选" id="selectinter" name="selectinter"  onclick="checkAll(this,'interid')"></th>
 						<th>服务</th>
 						<th>路径</th>
 						<th>请求方式</th>
@@ -64,8 +63,8 @@
 							<td>{{inter.input}}</td>
 							<td>{{inter.output}}</td>
 							<td>
-								<img src="/static/images/pencil.png" onclick="" class="img-btn" title="编辑">
-								<img src="/static/images/remove.png" onclick="" class="img-btn" title="删除">
+								<img src="/static/images/pencil.png" class="img-btn" title="编辑"  onclick="location.href='/editinter.do?id={{inter.id}}'">
+								<img src="/static/images/remove.png" class="img-btn" title="删除"  onclick="del('inter',{{inter.id}})">
 							</td>
 						</tr>
 					{% endfor %}

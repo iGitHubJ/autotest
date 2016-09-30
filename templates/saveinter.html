@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>接口列表</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/static/json2.js"></script>
+<script type="text/javascript" src="/static/js/interapp.js"></script>
+</head>
+<body>
+	<div class="save-div">
+		<fieldset>
+		    <legend>{% ifequal optype 'edit' %}编辑{% else %}新增{% endifequal %}接口</legend>
+		    <form action="/saveinter.do" method="POST" name="inter">
+		    	{% csrf_token %}
+		    	<input type="hidden" value="{% ifequal optype 'edit' %}edit{% else %}add{% endifequal %}" name="optype">
+		    	<input type="hidden" value="{{id}}" name="id">
+				<table class="tb-save">
+					<tr><td class="td-right">服务</td>
+					<td><input type="text" name="service" value="{{service}}"></td></tr>
+					<tr><td class="td-right">路径</td>
+					<td><input type="text" name="path" value="{{path}}"></td></tr>
+					<tr><td class="td-right">请求方式</td>
+					<td>
+						<select name="method">
+							<option value="GET" {% ifequal method 'POST' %} selected {% endifequal %}>GET</option>
+							<option value="POST" selected>POST</option>
+						</select>
+					</td>
+					</tr>
+					<tr><td class="td-right">参数格式</td>
+					<td>
+						<select name="enc">
+							<option value="urlencode" {% ifequal enc 'urlencode' %} selected {% endifequal %}>urlencode</option>
+							<option value="json" selected>json</option>
+						</select>
+					</td>
+					</tr>
+					<tr><td class="td-right">请求参数格式</td>
+					<td><textarea name="input">{{input}}</textarea></td></tr>
+					<tr><td class="td-right">预期响应格式</td>
+					<td><textarea name="output">{{output}}</textarea></td></tr>
+					<tr>
+						<td class="td-btn" colspan="2">
+							<img src="/static/images/ok.png" class="img-btn" title="保存"  onclick="document.inter.submit()">
+							<img src="/static/images/cancel.png" class="img-btn" title="取消"  onclick="location.href='/lsinters.do'" style="margin-left:40px">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</fieldset>
+	</div>
+</body>
+</html>

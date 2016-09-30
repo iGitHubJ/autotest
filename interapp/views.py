@@ -9,6 +9,7 @@ from utils import constant
 from utils.xml_util import parse
 from interapp import business
 from utils import logger
+from interapp import models
 log = logger.get()
 
 reload(sys) 
@@ -28,12 +29,16 @@ def hello(request):
     context['now'] = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
     return render(request, 'hello.html', context)
 
+def templates(request, path):
+    return render(request, path);
+
 def lsinters(request):
     """lsinters接口 列出配置文件中所有的测试接口"""
     (servers, inters) = business.listServersAndInters()
     ctx = {"servers":servers, "inters":inters}
     return render(request, 'inters.html', ctx)
 
+@csrf_exempt
 def executeAll(request):
     """执行测试脚本"""
     res = {}
@@ -59,19 +64,23 @@ def execute(request):
      request.body 获取post请求内容
     '''
     res = {}
-    try:
-        serverids=interids=""
-        if request.method=="GET":
-            serverids=request.GET.get("serverid")
-            interids=request.GET.get("interid")
-        elif request.method=="POST":
-            serverids=request.POST.get("serverid")
-            interids=request.POST.get("interid")
+    serverids = interids = ""
+    if request.method == "GET":
+        serverids = request.GET.get("serverid").strip()
+        interids = request.GET.get("interid").strip()
+    elif request.method == "POST":
+        serverids = request.POST.get("serverid").strip()
+        interids = request.POST.get("interid").strip()
+    else:
+        res["code"] = 500
+        res["msg"] = u"请使用GET/POST请求"
+        return HttpResponse(json.dumps(res), content_type="application/json")
 #         attrs=dir(request)
 #         for attr in attrs:
 #             print(attr, '==>', getattr(request, attr));
-        log.debug(interids)
-        log.debug(type(interids))
+    log.debug(interids)
+    log.debug(type(interids))
+    try:
         serverIds = json.loads(serverids)
         interIds = json.loads(interids)
         business.runAndSave(serverIds, interIds)
@@ -89,13 +98,110 @@ def lsresults(request):
     ctx = {}
     try:
         results = business.listResults()
-        ctx["data"] = results
+        ctx["results"] = results
         ctx["msg"] = "success"
     except Exception as e:
         ctx["code"] = 500
         ctx["msg"] = e.message
         log.error(u"程序遇到异常=>" + traceback.format_exc())
-    log.info("ctx:" + str(ctx))
+#     log.info("ctx:" + str(ctx))
     return render(request, 'results.html', ctx)
 
+@csrf_exempt
+def delete(request):
+    tag = ID = None
+    ctx = {"code":500}
+    if request.method == "GET":
+        tag = request.GET.get("tag").strip()
+        ID = request.GET.get("id").strip()
+    elif request.method == "POST":
+        tag = request.POST.get("tag").strip()
+        ID = request.POST.get("id").strip()
+    try:
+        if business.delete(tag, (int)(ID)):
+            log.debug(u"删除成功")
+            ctx["code"] = 200
+            ctx["msg"] = "success"
+    except Exception as e:
+        ctx["msg"] = e.message
+        log.error(u"程序遇到异常=>" + traceback.format_exc())
+    return HttpResponse(json.dumps(ctx), content_type="application/json")
+
+@csrf_exempt
+def batchdel(request):
+    tag = ids = None
+    ctx = {"code":500}
+    if request.method == "GET":
+        tag = request.GET.get("tag")
+        ids = request.GET.get("ids").strip()
+    elif request.method == "POST":
+        tag = request.POST.get("tag").strip()
+        ids = request.POST.get("ids").strip()
+    try:
+        ids = json.loads(ids)
+        if business.batchdel(tag, ids):
+            log.debug(u"删除成功")
+            ctx["code"] = 200
+            ctx["msg"] = "success"
+    except Exception as e:
+        ctx["msg"] = e.message
+        log.error(u"程序遇到异常=>" + traceback.format_exc())
+    return HttpResponse(json.dumps(ctx), content_type="application/json")
+
+def editinter(request):
+    ID = None
+    if request.method == "GET":
+        ID = request.GET.get("id")
+    elif request.method == "POST":
+        ID = request.POST.get("id")
+    inter = business.findInterById((int)(ID));
+    if inter:
+        ctx = {"id":ID, "service":inter.service, "path":inter.path, "method":inter.method, "enc":inter.enc, "input":inter.input, "output":inter.output}
+        ctx['optype'] = 'edit'
+        return render(request, "saveinter.html", ctx)
+    else:
+        return HttpResponse(json.dumps({"code":500, "msg":"no data found"}), content_type="application/json")
+
+
+def saveinter(request):
+    ID = None
+    if request.method == "GET":
+        return HttpResponse(json.dumps({"code":405, "msg":"please use POST http method"}), content_type="application/json")
+    elif request.method == "POST":
+        log.debug(">>>>>"+json.dumps(request.POST))
+        optype = request.POST.get("optype").strip()
+        service = request.POST.get("service").strip()
+        path = request.POST.get("path").strip()
+        method = request.POST.get("method").strip()
+        enc = request.POST.get("enc").strip()
+        input = request.POST.get("input").strip()
+        output = request.POST.get("output").strip()
+        if optype == 'edit':
+            ID = request.POST.get("id")
+        try:
+            if business.saveOrUpdateInter(models.Inter(id=ID, service=service, path=path, method=method, enc=enc, input=input, output=output)):
+                log.debug(u"执行成功")
+                return lsinters(request)
+        except Exception:
+            log.error(u"程序遇到异常=>" + traceback.format_exc())
+            
+            
+
+@csrf_exempt
+def saveServer(request):
+    name=None
+    ctx = {"code":500}
+    if request.method == "GET":
+        name = request.GET.get("name").strip()
+    elif request.method == "POST":
+        name = request.POST.get("name").strip()
+    try:
+        if business.saveServer(name):
+            log.debug(u"服务器添加成功")
+            ctx["code"] = 200
+            ctx["msg"] = "success"
+    except Exception as e:
+        ctx["msg"] = e.message
+        log.error(u"程序遇到异常=>" + traceback.format_exc())
+    return HttpResponse(json.dumps(ctx), content_type="application/json")
 

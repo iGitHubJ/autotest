@@ -65,7 +65,7 @@ def listServersAndInters(serverIds=None, interIds=None):
         inters = models.Inter.objects.filter(id__in=interIds).order_by('-createtime', 'id')
     else:
         inters = models.Inter.objects.order_by('-createtime', 'id')[0:100]
-    log.debug("servers:%s,inters:%s"%(servers,inters))
+    log.debug("servers:%s,inters:%s" % (servers, inters))
     return (servers, inters)
 
 
@@ -109,5 +109,54 @@ def init():
 #     log.info("本次共测试：%d个接口，成功：%d，失败：%d" % (total, success, fail))
 
 
+
+
+def delete(tag, ID):
+    if tag and ID:
+        if tag == 'server':
+            log.debug(u"删除id为%d的服务器信息" % ID)
+            models.Server.objects.filter(id=ID).delete()
+            return True
+        elif tag == 'inter':
+            log.debug(u"删除id为%d的接口信息" % ID)
+            models.Inter.objects.filter(id=ID).delete()
+            return True
+    return False
+
+def batchdel(tag, ids):
+    if tag and ids and isinstance(ids, list):
+        if tag == 'result':
+            log.debug(u"批量删除id为%s的测试结果信息" % (json.dumps(ids)))
+            models.Result.objects.filter(id__in=ids).delete()
+            return True
+    return False
+
+
+def findInterById(ID):
+    if ID :
+        return models.Inter.objects.get(id=ID)
+
+def findServerById(ID):
+    if ID :
+        return models.Server.objects.get(id=ID)
+
+
+def saveOrUpdateInter(inter):
+    if inter.id is None:
+        log.debug(u"保存%s对象" % inter)
+        inter.save()
+        return True
+    else:
+        log.debug(u"更新%s对象" % inter)
+        models.Inter.objects.filter(id=inter.id).update(input=inter.input)
+        return True
+        
+
+
+def saveServer(name):
+    if name:
+        models.Server(name=name).save()
+        return True
+    return False
 
 

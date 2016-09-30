@@ -132,16 +132,16 @@ class Inter(models.Model):
     enc = models.CharField(max_length=50, default='json', blank=True, null=True)
     input = models.TextField(blank=True, null=True)
     output = models.TextField(blank=True, null=True)
-    createtime = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
-
+    createtime = models.DateTimeField(auto_now=True)
+    
     class Meta:
         managed = False
         db_table = 'inter'
         get_latest_by = 'createtime'
-        unique_together = (('service', 'path'),)
+        unique_together = (('service', 'path', 'input'),)
         
     def __repr__(self):
-        return '[id:%d,service:%s,path:%s,method:%s,enc:%s]' % (self.id, self.service, self.path, self.method, self.enc)
+        return '[id:%s,service:%s,path:%s,method:%s,enc:%s]' % (self.id, self.service, self.path, self.method, self.enc)
     
     __str__ = __repr__
         
@@ -150,14 +150,14 @@ class Inter(models.Model):
 class Server(models.Model):
     id = models.AutoField(primary_key=True)  # AutoField?
     name = models.CharField(unique=True, max_length=100)
-    createtime = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())  # This field type is a guess.
-
+    createtime = models.DateTimeField(auto_now=True)
+    
     class Meta:
         managed = False
         db_table = 'server'
         get_latest_by = 'createtime'
     def __repr__(self):
-        return '[id:%d,name:%s]' % (self.id, self.name)
+        return '[id:%s,name:%s]' % (self.id, self.name)
     
     __str__ = __repr__
         
@@ -169,10 +169,10 @@ class Result(models.Model):
 #     inter_id = models.IntegerField()
 #     server_id = models.IntegerField()
     req = models.TextField()
-    resp = models.TextField() 
+    resp = models.TextField(blank=True, null=True) 
     result = models.BooleanField()
     spend = models.IntegerField(blank=True, null=True)
-    createtime = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())  # This field type is a guess.
+    createtime = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
@@ -180,6 +180,6 @@ class Result(models.Model):
         get_latest_by = 'createtime'
         
     def __repr__(self):
-        return '[id:%d,inter:%s,server:%s,req:%s,resp:%s,result:%s,spend:%d]' % (self.id, self.inter, self.server, self.req, self.resp, self.result, self.spend)
+        return '[id:%s,inter:%s,server:%s,req:%s,resp:%s,result:%s,spend:%d]' % (self.id, self.inter, self.server, self.req, self.resp, self.result, self.spend)
     
     __str__ = __repr__

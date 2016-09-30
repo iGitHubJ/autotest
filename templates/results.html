@@ -13,12 +13,11 @@
 		<fieldset>
 			<legend>接口测试结果</legend>
 			<div class="btn-div">
-				<input type="button" class="btn" value="批量删除" onclick="">
-				<input type="button" class="btn" value="全部清空" onclick="">
+				<input type="button" class="btn" value="批量删除" id="batchdel" onclick="batchdel('result','resultid')">
 			</div>
 			<table class="tb-inters">
 				<tr>
-					<th><input type="checkbox" value="全选" id="selectall" name="selectall"></th>
+					<th><input type="checkbox" value="全选" id="selectresult" name="selectresult"  onclick="checkAll(this,'resultid')"></th>
 					<th>请求地址</th>
 					<th>请求内容</th>
 					<th>响应</th>
@@ -26,17 +25,21 @@
 					<th>响应时间(毫秒)</th>
 					<th>调用时间</th>
 				</tr>
-				{% for result in data %}
-					<tr>
-						<td><input type="checkbox" value="{{result.id}}"  name="item"></td>
-						<td>http:{{result.server.name}}/{{result.inter.service}}{{result.inter.path}}</td>
-						<td>{{result.req}}</td>
-						<td>{{result.resp}}</td>
-						<td>{{result.result}}</td>
-						<td>{{result.spend}}</td>
-						<td>{{result.createtime|date:"Y-m-d H:i:s"}}</td>
-					</tr>
-				{% endfor %}
+				{% if results %}
+					{% for result in results %}
+						<tr>
+							<td><input type="checkbox" value="{{result.id}}"  name="resultid"></td>
+							<td>http://{{result.server.name}}/{{result.inter.service}}{{result.inter.path}}</td>
+							<td>{{result.req}}</td>
+							<td>{{result.resp}}</td>
+							<td>{{result.result}}</td>
+							<td>{{result.spend}}</td>
+							<td>{{result.createtime|date:"Y-m-d H:i:s"}}</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>
+				{% endif %}
 			</table>
 		</fieldset>
 	</div>

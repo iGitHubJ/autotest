@@ -23,4 +23,10 @@ urlpatterns = [
     url(r'^execute.do$', views.execute),
     url(r'^executeAll.do$', views.executeAll),
     url(r'^lsresults.do$', views.lsresults),
+    url(r'^delete.do$', views.delete),
+    url(r'^batchdel.do$', views.batchdel),
+    url(r'^saveinter.do$', views.saveinter),
+    url(r'^editinter.do$', views.editinter),
+    url(r'^saveServer.do$', views.saveServer),
+    url(r'^templates/(.+)$', views.templates),
 ]

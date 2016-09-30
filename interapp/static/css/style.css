@@ -13,6 +13,20 @@ input[type=button]{
 input[type=button]:hover{
 	border-color:rgb(150,150,220);
 }
+input[type='text']{
+	width:300px;
+	height:30px;
+}
+textarea{
+	width:300px;
+	height:60px;
+}
+select{
+	width:300px;
+	height:30px;
+	font-size:15px;
+}
+
 a{
 	text-decoration: none;
 	color:#333;
@@ -64,6 +78,10 @@ a{
 	margin:20px auto;
 	/* text-align:center; */
 }
+.save-div{
+	width:900px;
+	margin:20px auto;
+}
 table{
 	border:1px solid #888;
 	border-collapse: collapse;
@@ -76,7 +94,7 @@ th,td{
 td{
 	text-align:left;
 	vertical-align: middle;
-	word-break: break-all; 
+	/* word-break: break-all;  */
 	word-wrap:break-word;
 	font-family:Courier New;
 }
@@ -93,6 +111,9 @@ fieldset{
 	border-radius:25px;
 	margin:20px auto;
 	padding:20px 10px;
+}
+.save-div fieldset{
+	width:600px;
 }
 legend{
 	color:#e77713;
@@ -132,3 +153,18 @@ legend{
 .div-img img:active{
 	border:2px solid #999;
 }
+.tb-save{
+	border:0 none;
+	margin:20px auto;
+}
+.tb-save td{
+	border:0 none;
+	padding:10px;
+}
+td.td-right{
+	text-align:right;
+}
+td.td-btn{
+	text-align:center;
+}
+
