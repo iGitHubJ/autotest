@@ -19,6 +19,6 @@
 
 
 启动服务器后，访问 <a href="http://localhost:8000/static/index.html">http://localhost:8000/static/index.html</a> 开启测试之旅!
-下载最新源码：https://github.com/iGitHubJ/autotest
+下载最新源码：<a href="https://github.com/iGitHubJ/autotest">https://github.com/iGitHubJ/autotest</a>
 
-请将反馈信息发送至邮箱 898596025@qq.com
+请将反馈信息发送至邮箱 <a href="mailto:898596025@qq.com">898596025@qq.com</a>
