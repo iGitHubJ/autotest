@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-
+from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt 
@@ -49,7 +49,7 @@ def executeAll(request):
     except Exception as e:
         res["code"] = 500
         res["msg"] = e.message
-        log.error(u"程序遇到异常=>" + traceback.format_exc())
+        log.error("程序遇到异常=>" + traceback.format_exc())
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 @csrf_exempt
@@ -73,7 +73,7 @@ def execute(request):
         interids = request.POST.get("interid").strip()
     else:
         res["code"] = 500
-        res["msg"] = u"请使用GET/POST请求"
+        res["msg"] = "请使用GET/POST请求"
         return HttpResponse(json.dumps(res), content_type="application/json")
 #         attrs=dir(request)
 #         for attr in attrs:
@@ -89,7 +89,7 @@ def execute(request):
     except Exception as e:
         res["code"] = 500
         res["msg"] = e.message
-        log.error(u"程序遇到异常=>" + traceback.format_exc())
+        log.error("程序遇到异常=>" + traceback.format_exc())
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 
@@ -103,7 +103,7 @@ def lsresults(request):
     except Exception as e:
         ctx["code"] = 500
         ctx["msg"] = e.message
-        log.error(u"程序遇到异常=>" + traceback.format_exc())
+        log.error("程序遇到异常=>" + traceback.format_exc())
 #     log.info("ctx:" + str(ctx))
     return render(request, 'results.html', ctx)
 
@@ -119,12 +119,12 @@ def delete(request):
         ID = request.POST.get("id").strip()
     try:
         if business.delete(tag, (int)(ID)):
-            log.debug(u"删除成功")
+            log.debug("删除成功")
             ctx["code"] = 200
             ctx["msg"] = "success"
     except Exception as e:
         ctx["msg"] = e.message
-        log.error(u"程序遇到异常=>" + traceback.format_exc())
+        log.error("程序遇到异常=>" + traceback.format_exc())
     return HttpResponse(json.dumps(ctx), content_type="application/json")
 
 @csrf_exempt
@@ -140,12 +140,12 @@ def batchdel(request):
     try:
         ids = json.loads(ids)
         if business.batchdel(tag, ids):
-            log.debug(u"删除成功")
+            log.debug("删除成功")
             ctx["code"] = 200
             ctx["msg"] = "success"
     except Exception as e:
         ctx["msg"] = e.message
-        log.error(u"程序遇到异常=>" + traceback.format_exc())
+        log.error("程序遇到异常=>" + traceback.format_exc())
     return HttpResponse(json.dumps(ctx), content_type="application/json")
 
 def editinter(request):
@@ -156,7 +156,7 @@ def editinter(request):
         ID = request.POST.get("id")
     inter = business.findInterById((int)(ID));
     if inter:
-        ctx = {"id":ID, "service":inter.service, "path":inter.path, "method":inter.method, "enc":inter.enc, "input":inter.input, "output":inter.output}
+        ctx = {"id":ID, "service":inter.service, "path":inter.path, "comment":inter.comment, "method":inter.method, "enc":inter.enc, "input":inter.input, "output":inter.output}
         ctx['optype'] = 'edit'
         return render(request, "saveinter.html", ctx)
     else:
@@ -176,32 +176,37 @@ def saveinter(request):
         enc = request.POST.get("enc").strip()
         input = request.POST.get("input").strip()
         output = request.POST.get("output").strip()
+        comment = request.POST.get("comment").strip()
         if optype == 'edit':
             ID = request.POST.get("id")
         try:
-            if business.saveOrUpdateInter(models.Inter(id=ID, service=service, path=path, method=method, enc=enc, input=input, output=output)):
-                log.debug(u"执行成功")
+            if business.saveOrUpdateInter(models.Inter(id=ID, service=service, path=path, method=method, enc=enc, input=input, output=output, comment=comment)):
+                log.debug("执行成功")
                 return lsinters(request)
-        except Exception:
-            log.error(u"程序遇到异常=>" + traceback.format_exc())
-            
+        except Exception as ex:#重复
+            log.error("程序遇到异常=>" + traceback.format_exc())
+            ctx={"errmsg":ex.message}
+            return render(request, "error.html", ctx)
             
 
 @csrf_exempt
 def saveServer(request):
     name=None
+    comment=None
     ctx = {"code":500}
     if request.method == "GET":
         name = request.GET.get("name").strip()
+        comment = request.GET.get("comment").strip()
     elif request.method == "POST":
         name = request.POST.get("name").strip()
+        comment = request.POST.get("comment").strip()
     try:
-        if business.saveServer(name):
-            log.debug(u"服务器添加成功")
+        if business.saveServer(models.Server(name=name, comment=comment)):
+            log.debug("服务器添加成功")
             ctx["code"] = 200
             ctx["msg"] = "success"
     except Exception as e:
         ctx["msg"] = e.message
-        log.error(u"程序遇到异常=>" + traceback.format_exc())
+        log.error("程序遇到异常=>" + traceback.format_exc())
     return HttpResponse(json.dumps(ctx), content_type="application/json")
 

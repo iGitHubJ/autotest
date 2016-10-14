@@ -8,7 +8,9 @@ input[type=button]{
 	border:1px solid rgb(200,200,200);
 	font-size:15px;
 	padding:4px 10px;
-	background-color: rgb(222,222,222);
+	background-color: #abcdef;
+	border-radius:5px;
+	font-family: 微软雅黑;
 }
 input[type=button]:hover{
 	border-color:rgb(150,150,220);
@@ -32,17 +34,17 @@ a{
 	color:#333;
 }
 .body{
-	width:1500px;
+	width:1700px;
 	margin:0 auto;
 }
 .top-div{
+	width:1700px;
 	height:75px;
-	width:1500px;
 	margin:0 auto;
 	border-bottom:1px solid #abc;
 }
 .top-frame{
-	width:1500px;
+	width:1700px;
 	height:75px;
 	scrolling:0;
 	border:0;
@@ -50,31 +52,31 @@ a{
 
 .left-div{
 	width:150px;
-	height:650px;
+	height:700px;
 	display:inline-block;
 	border-right:1px solid #abc;
 }
 .left-frame{
 	width:150px;
-	height:650px;
+	height:700px;
 	scrolling:no;
 	border:0 none;
 	
 }
 .right-div{
-	width:1340px;
-	height:650px;
+	width:1540px;
+	height:700px;
 	display:inline-block;
 	
 }
 .right-frame{
-	width:1340px;
-	height:650px;
+	width:1540px;
+	height:700px;
 	scrolling:no;
 	border:0 none;
 }
 .tb-div{
-	width:1340px;
+	width:1540px;
 	margin:20px auto;
 	/* text-align:center; */
 }
@@ -103,10 +105,10 @@ td{
 }
 .tb-inters{
 	/* table-layout: fixed; */
-	width:1330px;
+	width:1530px;
 }
 fieldset{
-	width:1340px;
+	width:1540px;
 	border:1px solid #efefef; 
 	border-radius:25px;
 	margin:20px auto;
@@ -167,4 +169,12 @@ td.td-right{
 td.td-btn{
 	text-align:center;
 }
-
+.batchdel-btn,.del-btn{
+	background-color: rgba(250,0,0,0.9) ! important;
+	color:white;
+}
+#execute{
+	background-color: green ;
+	color:white;
+	font-weight: bold;
+}

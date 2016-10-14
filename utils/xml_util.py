@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf8 -*-
+from __future__ import division
 import sys,os,json
 import datetime,time
 from xml.dom.minidom import parse
@@ -40,7 +41,7 @@ def parse(xml_path=settings.CONFIG_ROOT+'\\config.xml'):
             interfaces.append(inter)
         services.append({name:interfaces})
     result={'servers':servers,'services':services}
-    log.info(u"xml解析：%s" % json.dumps(result))
+    log.info("xml解析：%s" % json.dumps(result))
     return result;
 
 if __name__=='__main__':

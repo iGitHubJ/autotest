@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
-
+from __future__ import unicode_literals
 import httplib2,urllib,urlparse
 import sys,os,json,traceback
 import datetime,time
@@ -48,17 +48,17 @@ def do_get(url, params=None):
             if '&' in params and '=' in params:
                 url+=(params if '?' in url else '?'+params)
             else:
-                log.warn(u'参数格式错误，已忽略')
+                log.warn('参数格式错误，已忽略')
         else:
             log.warn(u'参数类型错误，必须是dict或str类型。已忽略')
-    log.debug(u"请求地址:%s" % url)
+    log.debug("请求地址:%s" % url)
     try:
         resp,content=h.request(url, headers={'cache-control':'no-cache','Content-Type':'application/x-www-form-urlencoded'})
         log.debug('<==>%d %s' %(resp.status, resp.reason))
         if resp.status==200 :
             return content.decode(constant.CHARSET)
     except Exception as e:
-        log.error(u"程序遇到异常=>"+traceback.format_exc())
+        log.error("程序遇到异常=>"+traceback.format_exc())
 
 '''
 模拟表单的post请求
@@ -66,20 +66,20 @@ def do_get(url, params=None):
 def do_post_form(url, params=None):
     #body=toUrlParams(params)
     body = urllib.urlencode(params)
-    log.debug(u"请求地址:%s,请求参数%s" % (url, body))
+    log.debug("请求地址:%s,请求参数%s" % (url, body))
     try:
         resp,content=h.request(url, 'POST', headers={'cache-control':'no-cache','Content-Type':'application/x-www-form-urlencoded'}, body=body)
         log.debug('<==>%d %s' %(resp.status, resp.reason))
         if(resp['status']=='200'):
             return content.decode(constant.CHARSET)
     except Exception as e:
-        log.error(u"程序遇到异常=>"+traceback.format_exc())
+        log.error("程序遇到异常=>"+traceback.format_exc())
 
 '''
 post请求
 '''
 def do_post_entity(url,body=None,content_type='text/html;charset=%s'% constant.CHARSET):
-    log.debug(u"请求地址:%s,请求参数%s" % (url, body))
+    log.debug("请求地址:%s,请求参数%s" % (url, body))
     headers={'cache-control':'no-cache',"Content-Type":content_type}
     try:
         resp,content=h.request(url, 'POST', headers=headers, body=body.encode(constant.CHARSET))
@@ -87,7 +87,7 @@ def do_post_entity(url,body=None,content_type='text/html;charset=%s'% constant.C
         if(resp['status']=='200'):
             return content.decode(constant.CHARSET)
     except Exception as e:
-        log.error(u"程序遇到异常=>"+traceback.format_exc())
+        log.error("程序遇到异常=>"+traceback.format_exc())
 
 '''
 http请求
@@ -113,7 +113,7 @@ def request(url, method='GET', body=None, enc='urlencode'):
 
 if __name__=='__main__':
     #录入停车场
-    content=do_get("http://www.parking24.cn/reformer-alipay-carlife/AlipayCarParkInfoController/insertCarParkInfo", {'parkId':13})
+    content=do_get("http://xbtest.parking24.cn:9090/reformer-alipay-carlife/AlipayCarParkInfoController/insertCarParkInfo", {'parkId':13})
     log.info('录入停车场返回:%s'%content)
 
     #车辆驶入
@@ -126,10 +126,10 @@ if __name__=='__main__':
 "channelId":13,"reservation":0,"licensePlateNumber":"%s","remarks1":"","record_id":330557}]}'%(parkId,car_number,intime,car_number);
     #校验json格式是否正确
     log.info(json.loads(s))
-    content = do_post_entity("http://www.parking24.cn/reformer-alipay-carlife/AlipayCarParkInfoController/carin", s, 'applicaton/json;charset=%s' % constant.CHARSET)
+    content = do_post_entity("http://xbtest.parking24.cn:9090/reformer-alipay-carlife/AlipayCarParkInfoController/carin", s, 'applicaton/json;charset=%s' % constant.CHARSET)
     log.info('车辆驶入返回:%s'%content)
 
-    content=request(url="http://www.parking24.cn/reformer-alipay-carlife/AlipayCarParkInfoController/insertCarParkInfo", body={'parkId':13})
+    content=request(url="http://xbtest.parking24.cn:9090/reformer-alipay-carlife/AlipayCarParkInfoController/insertCarParkInfo", body={'parkId':13})
     log.info('===>:%s'%content)
 
 

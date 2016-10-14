@@ -1,4 +1,6 @@
-#-*- coding:utf-8
+#!/usr/bin/env python
+# -*- coding:utf8 -*-
+
 """
 Django settings for autotest project.
 
@@ -10,7 +12,7 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-
+from __future__ import unicode_literals
 import os,sys
 from utils import constant
 

@@ -1,6 +1,14 @@
 # -*- coding:utf-8 -*-
+"""
+模型：
+    @author: 898596025@qq.com
+    @license: http://www.apache.org/licenses/
+    @change: 
+    @copyright: 版权所有
+    @since: 1.0
+    @version: 1.0
+"""
 from __future__ import unicode_literals
-
 from django.db import models
 import datetime
 from django.template.defaultfilters import default
@@ -125,6 +133,9 @@ class DjangoSession(models.Model):
 
 
 class Inter(models.Model):
+    """
+    接口地址
+    """
     id = models.AutoField(primary_key=True)
     service = models.CharField(max_length=100)
     path = models.CharField(max_length=100)
@@ -132,6 +143,7 @@ class Inter(models.Model):
     enc = models.CharField(max_length=50, default='json', blank=True, null=True)
     input = models.TextField(blank=True, null=True)
     output = models.TextField(blank=True, null=True)
+    comment = models.CharField(blank=True, null=True, max_length=100)
     createtime = models.DateTimeField(auto_now=True)
     
     class Meta:
@@ -141,15 +153,19 @@ class Inter(models.Model):
         unique_together = (('service', 'path', 'input'),)
         
     def __repr__(self):
-        return '[id:%s,service:%s,path:%s,method:%s,enc:%s]' % (self.id, self.service, self.path, self.method, self.enc)
+        return '[id:%s,service:%s,path:%s,method:%s,enc:%s,input:%s,output:%s,comment:%s]' % (self.id, self.service, self.path, self.method, self.enc, self.input, self.output, self.comment)
     
     __str__ = __repr__
         
 
 
 class Server(models.Model):
+    """
+    服务器地址
+    """
     id = models.AutoField(primary_key=True)  # AutoField?
     name = models.CharField(unique=True, max_length=100)
+    comment = models.CharField(blank=True, null=True, max_length=100)
     createtime = models.DateTimeField(auto_now=True)
     
     class Meta:
@@ -157,12 +173,15 @@ class Server(models.Model):
         db_table = 'server'
         get_latest_by = 'createtime'
     def __repr__(self):
-        return '[id:%s,name:%s]' % (self.id, self.name)
+        return '[id:%s,name:%s,comment:%s]' % (self.id, self.name, self.comment)
     
     __str__ = __repr__
         
 
 class Result(models.Model):
+    """
+    调用结果
+    """
     id = models.AutoField(primary_key=True)  # AutoField?
     inter = models.ForeignKey(Inter, models.DO_NOTHING)
     server = models.ForeignKey(Server, models.DO_NOTHING)

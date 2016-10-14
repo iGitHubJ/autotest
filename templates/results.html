@@ -13,7 +13,7 @@
 		<fieldset>
 			<legend>接口测试结果</legend>
 			<div class="btn-div">
-				<input type="button" class="btn" value="批量删除" id="batchdel" onclick="batchdel('result','resultid')">
+				<input type="button" class="batchdel-btn" value="批量删除" id="batchdel" onclick="batchdel('result','resultid')">
 			</div>
 			<table class="tb-inters">
 				<tr>
@@ -32,7 +32,7 @@
 							<td>http://{{result.server.name}}/{{result.inter.service}}{{result.inter.path}}</td>
 							<td>{{result.req}}</td>
 							<td>{{result.resp}}</td>
-							<td>{{result.result}}</td>
+							<td>{% ifequal result.result 0 %}<font color="red">失败</font>>{% else %}成功{% endifequal %}</td>
 							<td>{{result.spend}}</td>
 							<td>{{result.createtime|date:"Y-m-d H:i:s"}}</td>
 						</tr>

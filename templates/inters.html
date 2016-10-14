@@ -12,26 +12,31 @@
 	<div class="tb-div">
 		<div class="execute-div">
 			<div class="div-img">
-				<img alt="运行" id="execute" src="/static/images/run.png" title="执行">
+				<!-- <img alt="运行" id="execute" src="/static/images/run.png" title="执行"> -->
+				<input class="exec-btn" type="button" value="执行/测试" id="execute">
 			</div>
 		</div>
 		<fieldset>
 		    <legend>服务器列表</legend>
 		    	<div class="btn-div">
-		    		<img src="/static/images/add.png" onclick="addServer()" class="img-btn" title="新增">
+		    		<!-- <img src="/static/images/add.png" onclick="addServer()" class="img-btn" title="新增"> -->
+		    		<input type="button" value="新增" onclick="addServer()">
 		    	</div>
 				<table class="tb-servers" id="tb-servers">
 					<tr>
 						<th><input type="checkbox" title="全选" id="selectserver" name="selectserver" onclick="checkAll(this,'serverid')"></th>
 						<th>服务器</th>
+						<th>说明</th>
 						<th>操作</th>
 					</tr>
 					{% for server in servers %}
 					<tr>
 						<td><input type="checkbox" value="{{server.id}}"  name="serverid"></td>
 						<td>{{server.name}}</td>
+						<td>{% ifequal server.comment None%}{%else%}{{server.comment}}{%endifequal%}</td>
 						<td>
-							<img src="/static/images/remove.png" class="img-btn" title="删除" onclick="del('server',{{server.id}})">
+							<!-- <img src="/static/images/remove.png" class="img-btn" title="删除" onclick="del('server',{{server.id}})"> -->
+							<input type="button" value="删除" class="del-btn" onclick="del('server',{{server.id}})">
 						</td>
 					</tr>
 					{% endfor %}
@@ -40,13 +45,15 @@
 		<fieldset>
 		    <legend>接口列表</legend>
 		    	<div class="btn-div">
-			    	<img src="/static/images/add.png" class="img-btn" title="新增" onclick="location.href='/templates/saveinter.html'">
+			    	<!-- <img src="/static/images/add.png" class="img-btn" title="新增" onclick="location.href='/templates/saveinter.html'"> -->
+					<input type="button" value="新增" onclick="location.href='/templates/saveinter.html'">
 				</div>
 				<table class="tb-inters">
 					<tr>
 						<th><input type="checkbox" title="全选" id="selectinter" name="selectinter"  onclick="checkAll(this,'interid')"></th>
 						<th>服务</th>
 						<th>路径</th>
+						<th>说明</th>
 						<th>请求方式</th>
 						<th>参数格式</th>
 						<th>请求参数格式</th>
@@ -58,13 +65,16 @@
 							<td><input type="checkbox" value="{{inter.id}}"  name="interid"></td>
 							<td>{{inter.service}}</td>
 							<td>{{inter.path}}</td>
+							<td>{% ifequal inter.comment None%}{%else%}{{inter.name}}{%endifequal%}</td>
 							<td>{{inter.method}}</td>
 							<td>{{inter.enc}}</td>
 							<td>{{inter.input}}</td>
 							<td>{{inter.output}}</td>
 							<td>
-								<img src="/static/images/pencil.png" class="img-btn" title="编辑"  onclick="location.href='/editinter.do?id={{inter.id}}'">
-								<img src="/static/images/remove.png" class="img-btn" title="删除"  onclick="del('inter',{{inter.id}})">
+								<!-- <img src="/static/images/pencil.png" class="img-btn" title="编辑"  onclick="location.href='/editinter.do?id={{inter.id}}'">
+								<img src="/static/images/remove.png" class="img-btn" title="删除"  onclick="del('inter',{{inter.id}})"> -->
+								<input type="button" value="编辑" onclick="location.href='/editinter.do?id={{inter.id}}'">
+								<input type="button" class="del-btn" value="删除" onclick="del('inter',{{inter.id}})">
 							</td>
 						</tr>
 					{% endfor %}

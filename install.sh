@@ -1,13 +1,25 @@
 #!/bin/bash
 
-echo "正在安装pip工具..."
+echo "installing pip..."
 apt-get install pip
-echo "正在安装httplib2..."
+echo "installing httplib2..."
 pip install httplib2
-echo "httplib2安装完毕"
+echo 
 
-echo "正在安装Django..."
+echo "installing Django..."
 pip install Django
-echo "Django安装完毕"
+echo 
 
-exit 0
+get_char()
+{
+   SAVEDSTTY=`stty -g`
+   stty -echo
+   stty cbreak
+   dd if=/dev/tty bs=1 count=1 2> /dev/null
+   stty -raw
+   stty echo
+   stty $SAVEDSTTY
+}
+
+echo Press any key to exit
+char=`get_char`

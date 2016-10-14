@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding:utf8 -*-
+
 """autotest URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,6 +16,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from __future__ import unicode_literals
 from django.conf.urls import url
 from django.contrib import admin
 from interapp import views

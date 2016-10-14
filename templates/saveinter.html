@@ -17,33 +17,54 @@
 		    	<input type="hidden" value="{% ifequal optype 'edit' %}edit{% else %}add{% endifequal %}" name="optype">
 		    	<input type="hidden" value="{{id}}" name="id">
 				<table class="tb-save">
-					<tr><td class="td-right">服务</td>
-					<td><input type="text" name="service" value="{{service}}"></td></tr>
-					<tr><td class="td-right">路径</td>
-					<td><input type="text" name="path" value="{{path}}"></td></tr>
-					<tr><td class="td-right">请求方式</td>
-					<td>
-						<select name="method">
-							<option value="GET" {% ifequal method 'POST' %} selected {% endifequal %}>GET</option>
-							<option value="POST" selected>POST</option>
-						</select>
-					</td>
+					<tr>
+						<td class="td-right">服务</td>
+						<td><input type="text" id="service" name="service" value="{{service}}" onblur="tip(this,'/^\\w+$/','service-msg')"></td>
+						<td><span id="service-msg"></span></td>
 					</tr>
-					<tr><td class="td-right">参数格式</td>
-					<td>
-						<select name="enc">
-							<option value="urlencode" {% ifequal enc 'urlencode' %} selected {% endifequal %}>urlencode</option>
-							<option value="json" selected>json</option>
-						</select>
-					</td>
+					<tr>
+						<td class="td-right">路径</td>
+						<td><input type="text" name="path" id="path" value="{{path}}" onblur="tip(this,'/^\\S+$/','path-msg')"></td>
+						<td><span id="path-msg"></span></td>
 					</tr>
-					<tr><td class="td-right">请求参数格式</td>
-					<td><textarea name="input">{{input}}</textarea></td></tr>
-					<tr><td class="td-right">预期响应格式</td>
-					<td><textarea name="output">{{output}}</textarea></td></tr>
+					<tr>
+						<td class="td-right">说明</td>
+						<td><input type="text" name="comment" id="comment" value="{{comment}}" maxlength="20"></td>
+						<td><span id="comment-msg"></span></td>
+					<tr/>
+					<tr>
+						<td class="td-right">请求方式</td>
+						<td>
+							<select name="method" id="method">
+								<option value="GET" {% ifequal method 'POST' %} selected {% endifequal %}>GET</option>
+								<option value="POST" selected>POST</option>
+							</select>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="td-right">参数格式</td>
+						<td>
+							<select name="enc" id="enc">
+								<option value="urlencode" {% ifequal enc 'urlencode' %} selected {% endifequal %}>urlencode</option>
+								<option value="json" selected>json</option>
+							</select>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="td-right">请求参数格式</td>
+						<td><textarea name="input" id="input" onblur="$('#enc').val()=='json' ? tip(this,'json','input-msg') : $('#input-msg').html('')">{{input}}</textarea></td>
+						<td><span id="input-msg"></span></td>
+					</tr>
+					<tr>
+						<td class="td-right">预期响应格式</td>
+						<td><textarea name="output" id="output" onblur="$('#enc').val()=='json' ? tip(this,'json','output-msg') : $('#output-msg').html('')">{{output}}</textarea></td>
+						<td><span id="output-msg"></span></td>
+					</tr>
 					<tr>
 						<td class="td-btn" colspan="2">
-							<img src="/static/images/ok.png" class="img-btn" title="保存"  onclick="document.inter.submit()">
+							<img src="/static/images/ok.png" class="img-btn" title="保存"  onclick="saveInter()">
 							<img src="/static/images/cancel.png" class="img-btn" title="取消"  onclick="location.href='/lsinters.do'" style="margin-left:40px">
 						</td>
 					</tr>
