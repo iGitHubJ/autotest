@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "installing pip..."
-apt-get install pip
+apt-get install python-pip
 echo "installing httplib2..."
 pip install httplib2
 echo 
