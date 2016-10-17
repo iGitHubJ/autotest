@@ -68,7 +68,7 @@ $(function() {
 });
 
 function addServer() {
-	if (document.getElementById("#editname") == null) {
+	if (document.getElementById("editname") == null) {
 		$("#tb-servers")
 				.append(
 						"<tr><td><input type='checkbox' name='serverid'></td><td><input type='text' id='editname'></td><td><input type='text' id='editcomment' maxlength='20'></td><td><input type='button' value='保存' onclick='saveServer()'></td></tr>");
