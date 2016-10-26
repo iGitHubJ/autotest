@@ -15,16 +15,20 @@ input[type=button]{
 input[type=button]:hover{
 	border-color:rgb(150,150,220);
 }
+input[type=text],textarea{
+	font-size:18px;
+	
+}
 input[type='text']{
-	width:300px;
+	width:400px;
 	height:30px;
 }
 textarea{
-	width:300px;
-	height:60px;
+	width:400px;
+	height:100px;
 }
 select{
-	width:300px;
+	width:400px;
 	height:30px;
 	font-size:15px;
 }
@@ -81,7 +85,7 @@ a{
 	/* text-align:center; */
 }
 .save-div{
-	width:900px;
+	width:1000px;
 	margin:20px auto;
 }
 table{
@@ -115,12 +119,12 @@ fieldset{
 	padding:20px 10px;
 }
 .save-div fieldset{
-	width:600px;
+	width:800px;
 }
 legend{
 	color:#e77713;
 	font-family:隶书;
-	font-size:18px;
+	font-size:20px;
 }
 .left-menu h3{
 	margin-top:50px;
@@ -168,6 +172,9 @@ td.td-right{
 }
 td.td-btn{
 	text-align:center;
+}
+td.msg{
+	width:100px;
 }
 .batchdel-btn,.del-btn{
 	background-color: rgba(250,0,0,0.9) ! important;

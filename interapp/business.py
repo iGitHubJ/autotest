@@ -191,11 +191,9 @@ def saveOrUpdateInter(inter):
         return True
     else:
         log.debug("更新%s对象" % inter)
-        models.Inter.objects.filter(id=inter.id).update(input=inter.input)
+        models.Inter.objects.filter(id=inter.id).update(input=inter.input, output=inter.output, method=inter.method, enc=inter.enc, comment=inter.comment)
         return True
         
-
-
 def saveServer(server):
     """
     保存服务器信息
