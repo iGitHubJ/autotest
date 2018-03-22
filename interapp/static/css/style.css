@@ -180,6 +180,12 @@ td.msg{
 	background-color: rgba(250,0,0,0.9) ! important;
 	color:white;
 }
+tr.head{
+	background-color: rgb(227,227,227);
+}
+tr.odd{
+	background-color: rgb(245,245,245);
+}
 #execute{
 	background-color: green ;
 	color:white;
