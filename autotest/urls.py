@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^editinter.do$', views.editinter),
     url(r'^saveServer.do$', views.saveServer),
     url(r'^templates/(.+)$', views.templates),
+    url(r'^api/test.do$', views.test),
 ]

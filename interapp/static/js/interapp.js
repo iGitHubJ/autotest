@@ -179,7 +179,7 @@ function isJSON(value){
  * 提交保存接口表单
  */
 function saveInter(){
-	if(check("service",/^\w+$/) && check("path", /^\S+$/)){
+	if(check("service",/^\S*$/) && check("path", /^\S*$/)){
 		if($("#enc").val()=="json"){
 			if(isJSON($("#input").val().trim()) && isJSON($("#output").val().trim())){
 				document.inter.submit();

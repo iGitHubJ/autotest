@@ -19,12 +19,12 @@
 				<table class="tb-save">
 					<tr>
 						<td class="td-right">服务</td>
-						<td><input type="text" id="service" name="service" value="{{service}}" {% ifnotequal optype 'edit' %} onblur="tip(this,'/^\\w+$/','service-msg')" {% else %} readonly="readonly" {% endifnotequal %}></td>
+						<td><input type="text" id="service" name="service" value="{{service}}" {% ifnotequal optype 'edit' %} onblur="tip(this,'/^\\S*$/','service-msg')" {% else %} readonly="readonly" {% endifnotequal %}></td>
 						<td class="msg"><span id="service-msg"></span></td>
 					</tr>
 					<tr>
 						<td class="td-right">路径</td>
-						<td><input type="text" name="path" id="path" value="{{path}}"  {% ifnotequal optype 'edit' %} onblur="tip(this,'/^\\S+$/','path-msg')" {%else%} readonly="readonly" {% endifnotequal %}></td>
+						<td><input type="text" name="path" id="path" value="{{path}}"  {% ifnotequal optype 'edit' %} onblur="tip(this,'/^\\S*$/','path-msg')" {%else%} readonly="readonly" {% endifnotequal %}></td>
 						<td class="msg"><span id="path-msg"></span></td>
 					</tr>
 					<tr>

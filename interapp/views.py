@@ -79,7 +79,6 @@ def execute(request):
 #         for attr in attrs:
 #             print(attr, '==>', getattr(request, attr));
     log.debug(interids)
-    log.debug(type(interids))
     try:
         serverIds = json.loads(serverids)
         interIds = json.loads(interids)
@@ -106,6 +105,14 @@ def lsresults(request):
         log.error("程序遇到异常=>" + traceback.format_exc())
 #     log.info("ctx:" + str(ctx))
     return render(request, 'results.html', ctx)
+
+
+def test(request):
+    """测试"""
+    ctx={}
+    ctx["code"] = 200
+    ctx["msg"] = "success"
+    return HttpResponse(json.dumps(ctx), content_type="application/json")
 
 @csrf_exempt
 def delete(request):

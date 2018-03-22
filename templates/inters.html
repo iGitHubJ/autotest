@@ -23,7 +23,7 @@
 		    		<input type="button" value="新增" onclick="addServer()">
 		    	</div>
 				<table class="tb-servers" id="tb-servers">
-					<tr>
+					<tr class="head">
 						<th><input type="checkbox" title="全选" id="selectserver" name="selectserver" onclick="checkAll(this,'serverid')"></th>
 						<th>服务器</th>
 						<th>说明</th>
@@ -49,8 +49,9 @@
 					<input type="button" value="新增" onclick="location.href='/templates/saveinter.html'">
 				</div>
 				<table class="tb-inters">
-					<tr>
+					<tr class="head">
 						<th><input type="checkbox" title="全选" id="selectinter" name="selectinter"  onclick="checkAll(this,'interid')"></th>
+						<th>序号</th>
 						<th>服务</th>
 						<th>路径</th>
 						<th>说明</th>
@@ -61,8 +62,9 @@
 						<th>操作</th>
 					</tr>
 					{% for inter in inters %}
-						<tr>
+						<tr class={% if forloop.counter|divisibleby:2 %}"even"{%else%}"odd"{%endif%}>
 							<td><input type="checkbox" value="{{inter.id}}"  name="interid"></td>
+							<td>{{forloop.counter}}</td>
 							<td>{{inter.service}}</td>
 							<td>{{inter.path}}</td>
 							<td>{% ifequal inter.comment None%}{%else%}{{inter.comment}}{%endifequal%}</td>
